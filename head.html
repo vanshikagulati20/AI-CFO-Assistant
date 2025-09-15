@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #0a0f0a;
+            background-image: radial-gradient(at left center, rgba(2, 1, 1, 0) 60%, rgb(10, 46, 30) 100%);
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #0a0f0a;
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            border-radius: 8px;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #f59e0b;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ht{
+            max-width: 1150px;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero-subtitle {
+            display: flex;
+            align-items: center;
+            color: #f59e0b;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle::before {
+            content: '';
+            width: 48px;
+            height: 2px;
+            background-color: #f59e0b;
+            margin-right: 12px;
+        }
+
+        .hero-title {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .hero-highlight {
+            background: linear-gradient(135deg, #f59e0b, #eab308);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: #9ca3af;
+            margin-bottom: 40px;
+            max-width: 480px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .services-button {
+            /* background-color: #ffffff; */
+            background-color: rgba(0, 0, 0, 0);
+            background-image: linear-gradient(160deg, rgb(255, 255, 255) 35%, rgb(207, 255, 146) 100%);
+            color: #0a0f0a;
+            padding: 16px 32px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.3s;
+        }
+
+        .services-button:hover {
+            transform: translateY(-2px);
+            background-color: rgba(0, 0, 0, 0);
+            background-image: linear-gradient(100deg, rgb(216, 115, 20) 25%, rgb(207, 255, 146) 100%);
+        }
+
+        .phone-contact {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .phone-icon {
+            width: 48px;
+            height: 48px;
+            background-color: #374151;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+        }
+
+        .hero-image {
+            position: relative;
+            background-color: rgb(247, 255, 238);
+            height: 570px;
+            border-radius: 24px;
+        }
+
+        .hero-image img {
+            width: 96%;
+            height: 550px;
+            /* object-fit: cover; */
+            margin: 10px 0px 0px 10px;
+            border-radius: 24px;
+        }
+
+        .testimonial-card {
+            position: absolute;
+            bottom: 16px;
+            left: -90px;
+            background-color: #ffffff;
+            color: #0a0f0a;
+            padding: 24px;
+            border-radius: 16px;
+            max-width: 280px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .stars {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 12px;
+        }
+
+        .star {
+            color: #f59e0b;
+            font-size: 16px;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background-color: #111827;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-subtitle {
+            color: #f59e0b;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .section-description {
+            font-size: 18px;
+            color: #9ca3af;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: #1f2937;
+            padding: 40px;
+            border-radius: 16px;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #f59e0b, #eab308);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 24px;
+        }
+
+        .service-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .service-description {
+            color: #9ca3af;
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 100px 0;
+            background-color: #0a0f0a;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #f59e0b;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            color: #9ca3af;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1f2937, #111827);
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .cta-description {
+            font-size: 18px;
+            color: #9ca3af;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #ffffff;
+            padding: 16px 32px;
+            border: 2px solid #ffffff;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover,
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary:hover {
+            background-color: #ffffff;
+            color: #0a0f0a;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #111827;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #9ca3af;
+            text-decoration: none;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: #f59e0b;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 30px;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-title {
+                font-size: 40px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .cta-title {
+                font-size: 36px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .decorative-arrow {
+            position: absolute;
+            bottom: -20px;
+            left: 300px;
+            width: 100px;
+            height: 60px;
+            color: #f59e0b;
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 80px;
+            right: 32px;
+            width: 16px;
+            height: 16px;
+            background-color: #f59e0b;
+            border-radius: 50%;
+        }
+
+        .floating-elements::after {
+            content: '';
+            position: absolute;
+            top: 80px;
+            right: -8px;
+            width: 24px;
+            height: 24px;
+            background-color: #eab308;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <div class="logo-icon">🛡️</div>
+                        <span class="text-2xl font-bold text-white-900">AICFO</span>
+                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                        <span class="text-white text-sm font-bold">$</span>
+                    </div>
+                    <span class="text-2xl font-bold text-white-900">IST</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Features</a></li>
+                    <li><a href="#projects">Use Cases</a></li>
+                    <li><a href="#pages">Resources</a></li>
+                </ul>
+                <a href="#quote" class="cta-button">Get A Demo</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="ht">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-subtitle">FINANCIAL HEALTH & RISK INSIGHTS</div>
+                    <h1 class="hero-title">
+                        AI-Powered CFO Assistant for
+                        <span class="hero-highlight">Startups</span>
+                        and Listed Companies.
+                    </h1>
+                    <p class="hero-description">
+                        Analyze financial reports to generate comprehensive financial health insights and proactive risk alerts, explained in plain language.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#services" class="services-button">
+                            Explore Features →
+                        </a>
+                        <div class="phone-contact">
+                            <div class="phone-icon">📞</div>
+                            <span>Contact Us</span>
+                        </div>
+                    </div>
+                    <svg class="decorative-arrow" viewBox="0 0 100 60" fill="none">
+                        <path d="M10 30 Q30 10, 50 30 T90 30" stroke="currentColor" stroke-width="3" fill="none" />
+                        <path d="M85 25 L90 30 L85 35" stroke="currentColor" stroke-width="3" fill="none" />
+                    </svg>
+                </div>
+                <div class="hero-image">
+                    <img src="https://png.pngtree.com/thumb_back/fh260/background/20230308/pngtree-analysts-review-investment-reports-in-successful-teamwork-assess-business-summary-photo-image_50414756.jpg" alt="Professional business consultants">
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                        <p>"Essential for founders and investors to make data-driven decisions with confidence."</p>
+                    </div>
+                    <div class="floating-elements"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">KEY DELIVERABLES</div>
+                <h2 class="section-title">AI-Powered Financial Insights</h2>
+                <p class="section-description">
+                    Our system helps founders, CFOs, and investors gain deep insights into financial performance and spot risks early.
+                </p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💼</div>
+                    <h3 class="service-title">Data Ingestion & Parsing</h3>
+                    <p class="service-description">
+                        Extract key metrics like revenue, liabilities, and burn rate from PDF/Excel reports.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3 class="service-title">Financial Health Insights</h3>
+                    <p class="service-description">
+                        Assess cash flow, detect burn rate trends, forecast runway, and spot inefficiencies.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏦</div>
+                    <h3 class="service-title">Risk & Scenario Awareness</h3>
+                    <p class="service-description">
+                        Flag red flags like negative margins, rising debt, or a short runway (<6 months).
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💰</div>
+                    <h3 class="service-title">Explainability & Communication</h3>
+                    <p class="service-description">
+                        Provide clear, traceable rationales and plain-language summaries for all outputs.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛡️</div>
+                    <h3 class="service-title">Proactive Monitoring</h3>
+                    <p class="service-description">
+                        Surface risks and anomalies automatically, without needing specific queries.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📈</div>
+                    <h3 class="service-title">Strategic Recommendations</h3>
+                    <p class="service-description">
+                        Offer actionable recommendations for strategic decision-making and planning.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Companies Analyzed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$2.5B</div>
+                    <div class="stat-label">Assets Evaluated</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Metrics Tracked</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Insight Accuracy</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="cta-section" id="quote">
+        <div class="container">
+            <h2 class="cta-title">Ready to Elevate Your Financial Strategy?</h2>
+            <p class="cta-description">
+                Get a personalized demo of our AI-powered CFO assistant and start making smarter, data-driven decisions today.
+            </p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn-primary">Request a Demo</a>
+                <a href="#consultation" class="btn-secondary">Contact Sales</a>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <div class="logo-icon">🛡️</div>
+                        AICFOIST
+                    </div>
+                    <p>Your AI partner for financial health and strategic decision-making.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Features</h3>
+                    <a href="#">Data Ingestion</a>
+                    <a href="#">Financial Insights</a>
+                    <a href="#">Risk Awareness</a>
+                    <a href="#">Proactive Monitoring</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <a href="#">About Us</a>
+                    <a href="#">Team</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📧 info@aicfoist.com</p>
+                    <p>📞 123 456 789</p>
+                    <p>📍 AI Financial Hub, SF</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AICFOIST. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+</body>
+</html>
